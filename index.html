@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Ca Tu</title>
+  </head>
+  <body>
+    <h1>Yêu <br /><span>CaTu ❤</span></h1>
+    <div id="container">
+      <div class="heart"></div>
+    </div>
+
+    <script src="catu.js"></script>
+    <script>
+      const container = document.getElementById("container");
+
+      function createHearts(numberHearts) {
+        for (i = 0; i <= numberHearts; i++) {
+          let heart = document.createElement("div");
+          heart.className = "heart";
+          heart.style.zIndex = Math.floor(Math.random() * 6) + 2;
+          container.appendChild(heart);
+        }
+      }
+
+      function animation() {
+        anime({
+          targets: ".heart",
+          translateX: function () {
+            return anime.random(-700, 700);
+          },
+          translateY: function () {
+            return anime.random(-500, 500);
+          },
+          rotate: 45,
+          scale: function () {
+            return anime.random(1, 5);
+          },
+          easing: "easeInOutBack",
+          duration: 3000,
+          delay: anime.stagger(10),
+          complete: animation,
+        });
+      }
+
+      createHearts(50);
+      animation();
+    </script>
+  </body>
+</html>
